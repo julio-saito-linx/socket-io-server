@@ -1,0 +1,13 @@
+{
+  "name": "socketServer",
+  "version": "0.0.0",
+  "description": "socket-io-server",
+  "main": "index.js",
+  "repository": "",
+  "author": "",
+  "private": true,
+  "license": "BSD",
+  "dependencies": {
+    "socket.io": "~0.9.16"
+  }
+}
