@@ -18,8 +18,16 @@ function handler (req, res) {
 }
 
 io.sockets.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' });
+  
+  socket.emit('yourAreConnected', new Date());
+  
   socket.on('my other event', function (data) {
     console.log(data);
   });
+
+  socket.on('toSocket:playlist:add', function (data) {
+    console.log("\n toSocket:playlist:add \n", data);
+    socket.broadcast.emit('toAll:playlist:add', data);
+  });
+
 });
