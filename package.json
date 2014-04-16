@@ -8,6 +8,7 @@
   "private": true,
   "license": "BSD",
   "dependencies": {
-    "socket.io": "~0.9.16"
+    "socket.io": "~0.9.16",
+    "express": "~4.0.0"
   }
 }
