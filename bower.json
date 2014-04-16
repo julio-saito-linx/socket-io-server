@@ -1,0 +1,27 @@
+{
+  "name": "3-socketServer",
+  "version": "0.0.0",
+  "homepage": "https://github.com/saitodisse/socket-io-server",
+  "authors": [
+    "Julio Makdisse Saito <saitodisse@gmail.com>"
+  ],
+  "description": "keep all other projects joined",
+  "main": "app.js",
+  "keywords": [
+    "express",
+    "socket.io"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.0",
+    "bootstrap": "~3.1.1"
+  }
+}
