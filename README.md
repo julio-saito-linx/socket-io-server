@@ -6,17 +6,19 @@ keep all other projects joined.
 
 ## TODO
 
-#### (9003) Socket.IO Server
+#### (9003) [Socket.IO Server](http://localhost:9003)
 
 has the **user session**
 
- - has a session
- - has o logon page
+ - has a user session
+ - has a link to music search with the user session
+ - has the logon page
  - can logon with facebook
- - can create one player
- - can add music to some other player
+ - can create a new player
+ - can add music to this player
+ - can add music to others players
 
-#### (9001) Player
+#### (9001) [Player](http://localhost:9001)
 
 can **play** and have a playlist
 
@@ -24,7 +26,7 @@ can **play** and have a playlist
  - only accepts his music
  - can be excluded
 
-#### (9002) Music Searcher
+#### (9002) [Music Searcher](http://localhost:9002)
 
 **search**, preview and add to a __player__
 
