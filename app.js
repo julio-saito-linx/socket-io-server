@@ -8,6 +8,7 @@ var express = require('express')
   , path = require('path')
   , routes = require('./routes')
   , user = require('./routes/user')
+  , mainSocket = require('./sockets/mainSocket');
 ;
 
 // static
@@ -18,26 +19,34 @@ app.use(express.static(path.join(__dirname, 'bower_components')));
 app.set('port', process.env.PORT || 9004);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+app.use(bodyParser());
 app.use(cookieParser());
 app.use(expressSession({secret:'some-secret_token=here'}));
 
 
 app.get('/', routes.index);
 
-// app.get('/', function (req, res) {
-//     console.log('req.session.userName=', req.session.userName);
-//     res.sendfile(__dirname + '/index.html');
-// });
-
-io.sockets.on('connection', function (socket) {
-  socket.emit('yourAreConnected', new Date());
-  socket.on('my other event', function (data) {
-    console.log(data);
-  });
-  socket.on('toSocket:playlist:add', function (data) {
-    console.log("\n toSocket:playlist:add \n", data);
-    socket.broadcast.emit('toAll:playlist:add', data);
-  });
+app.get('/logon', function(req, res){
+  if (req.session.userName) {
+    res.redirect('/');
+  } else {
+    res.render('logon');
+  }
 });
+
+
+app.post('/logon', function(req, res){
+  // set session
+  req.session.userName = req.body.userName;
+
+  // start socket
+  mainSocket.startSockets(io, req.session.userName);
+
+  // go to index
+  res.redirect('/');
+});
+
+
+
 
 server.listen(9003);

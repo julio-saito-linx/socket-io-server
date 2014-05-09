@@ -4,5 +4,14 @@
  */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Music Server' });
+
+  if(req.session.userName){
+    res.render('index', { 
+      title: 'Socket.IO Server',
+      userName: req.session.userName
+    });
+  }else{
+    res.redirect('/logon');
+  }
+  
 };

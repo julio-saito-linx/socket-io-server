@@ -1,0 +1,9 @@
+extends layout
+
+block content
+    h1 What is your name?
+    form(role='form',method='POST')
+        .form-group
+          label(for='userName') User Name:
+          input#userName.form-control(type='text', placeholder='Enter your name', name='userName')
+        button.btn.btn-default(type='submit') Submit

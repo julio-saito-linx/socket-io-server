@@ -2,14 +2,14 @@ body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 
-  background: #959595; /* Old browsers */
-  background: -moz-linear-gradient(left,  #959595 0%, #0d0d0d 46%, #010101 50%, #0a0a0a 53%, #4e4e4e 76%, #383838 87%, #1b1b1b 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, right top, color-stop(0%,#959595), color-stop(46%,#0d0d0d), color-stop(50%,#010101), color-stop(53%,#0a0a0a), color-stop(76%,#4e4e4e), color-stop(87%,#383838), color-stop(100%,#1b1b1b)); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(left,  #959595 0%,#0d0d0d 46%,#010101 50%,#0a0a0a 53%,#4e4e4e 76%,#383838 87%,#1b1b1b 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(left,  #959595 0%,#0d0d0d 46%,#010101 50%,#0a0a0a 53%,#4e4e4e 76%,#383838 87%,#1b1b1b 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(left,  #959595 0%,#0d0d0d 46%,#010101 50%,#0a0a0a 53%,#4e4e4e 76%,#383838 87%,#1b1b1b 100%); /* IE10+ */
-  background: linear-gradient(to right,  #959595 0%,#0d0d0d 46%,#010101 50%,#0a0a0a 53%,#4e4e4e 76%,#383838 87%,#1b1b1b 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#959595', endColorstr='#1b1b1b',GradientType=1 ); /* IE6-9 */
+  background: #d2ebf9; /* Old browsers */
+  background: -moz-linear-gradient(left,  #d2ebf9 1%, #feffff 22%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right top, color-stop(1%,#d2ebf9), color-stop(22%,#feffff)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(left,  #d2ebf9 1%,#feffff 22%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(left,  #d2ebf9 1%,#feffff 22%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(left,  #d2ebf9 1%,#feffff 22%); /* IE10+ */
+  background: linear-gradient(to right,  #d2ebf9 1%,#feffff 22%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d2ebf9', endColorstr='#feffff',GradientType=1 ); /* IE6-9 */
 }
 
 a {
@@ -18,7 +18,7 @@ a {
 
 h1{
   font: 48px "Lucida Grande", Helvetica, Arial, sans-serif;
-  color: #FFF;
+  color: #222;
 }
 
 .blocktext {
@@ -38,4 +38,8 @@ h1{
 }
 .data{
   color: #227;
+}
+
+.buttonSpace{
+  margin-right: 30px;
 }

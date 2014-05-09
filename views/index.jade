@@ -1,7 +1,23 @@
 extends layout
 
 block content
-    h1 Socket.IO Server
-    pre
+	h1 Elastic Local Music
+	h4 Welcome <b>#{userName}</b>
+
+	h4 Players:
+	ul
+		li Sala de Estar - Julio - playing: Maria Rita - Num copo so´
+		li Quarto de Visitas - Mario - playing: John Scofield - A Go Go
+		li 
+			a Create a new player
+
+	a.btn.btn-default.buttonSpace(href="http://192.168.15.103:9002/?user=#{userName}")
+		Search music
+
+	br
+	br
+	p.users
+	p Log
+	pre.log
 
 script(src='/socket.io/socket.io.js')
