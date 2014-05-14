@@ -8,12 +8,13 @@
 
 exports.startSockets = function(io, session){
   
-  // serverData
-  var serverData = {};
-  serverData.sid = session.sid;
-  serverData.userName = session.userName;
 
   io.sockets.on('connection', function (socket) {
+
+    // serverData
+    var serverData = {};
+    serverData.sid = session.sid;
+    serverData.userName = session.userName;
 
     // connection
     io.sockets.emit(
