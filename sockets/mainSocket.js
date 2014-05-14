@@ -6,18 +6,18 @@
 
 'use strict';
 
-var serverData = {};
-(function() {
-  serverData.dateCreation = (new Date());
-})();
+exports.startSockets = function(io, session){
+  
+  // serverData
+  var serverData = {};
+  serverData.sid = session.sid;
+  serverData.userName = session.userName;
 
-exports.startSockets = function(io, userName){
-  serverData.userName = userName;
   io.sockets.on('connection', function (socket) {
 
     // connection
     io.sockets.emit(
-      'clientsChanged', 
+      'clientsChanged',
       {
         serverData: serverData,
         usersCount: io.sockets.clients().length
@@ -35,7 +35,7 @@ exports.startSockets = function(io, userName){
         );
         
         //send info from server
-        socket.emit('server:status', 
+        socket.emit('server:status',
         {
           serverData: serverData
         });
@@ -54,7 +54,7 @@ exports.startSockets = function(io, userName){
     });
    
     socket.on('toSocket:playlist:add', function (data) {
-      console.log('\n' + userName + ': toSocket:playlist:add \n', data);
+      console.log('\n' + session + ': toSocket:playlist:add \n', data);
       socket.broadcast.emit('toAll:playlist:add', 
         {
           serverData: serverData,

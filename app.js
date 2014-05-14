@@ -40,7 +40,7 @@ app.post('/logon', function(req, res){
   req.session.userName = req.body.userName;
 
   // start socket
-  mainSocket.startSockets(io, req.session.userName);
+  mainSocket.startSockets(io, req.session);
 
   // go to index
   res.redirect('/');
