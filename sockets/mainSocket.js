@@ -18,13 +18,18 @@ exports.startSockets = function(io, session, sessionsList){
     );
 
 
-    socket.on('client:connection', function (clientID) {
-        console.log('\n\nclient:connection:', clientID,  '\n\n');
-        var clientSID = clientID.sid;
+    socket.on('client:connection', function (clientInfo) {
+        console.log('\n\nclient:connection:', clientInfo,  '\n\n');
+        var clientSID = clientInfo.sid;
         var userName = sessionsList.getValue(clientSID);
         
         //send info from server
         socket.emit('server:userName', userName);
+    });
+
+    socket.on('client:request:players', function (clientInfo) {
+        console.log('\n\nclient:request:players:', clientInfo,  '\n\n');
+        socket.emit('server:playersList', []);
     });
    
     // on disconnection
