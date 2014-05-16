@@ -2,7 +2,8 @@ extends layout
 
 block content
 	h1 Elastic Local Music
-	h4 Welcome <b>#{userName}</b> sid: #{sid}
+	h4 Welcome <b>#{userName}</b> sid: 
+		span#sidSpan #{sid}
 
 	h4 Players:
 	ul
@@ -15,8 +16,6 @@ block content
 
 	br
 	br
-	p.users
-	p Log
-	pre.log
+	div.clients
 
 script(src='/socket.io/socket.io.js')

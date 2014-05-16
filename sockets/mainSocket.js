@@ -6,41 +6,59 @@
 
 'use strict';
 
-exports.startSockets = function(io, session, sessionsList){
+exports.startSockets = function(io, sessionsList, clientList){
   io.sockets.on('connection', function (socket) {
-
-    // connection
-    io.sockets.emit(
-      'clientsChanged',
-      {
-        usersCount: io.sockets.clients().length
-      }
-    );
-
-
+    /*
+      get clientInfo direct from the client
+    */
     socket.on('client:connection', function (clientInfo) {
-        console.log('\n\nclient:connection:', clientInfo,  '\n\n');
-        var clientSID = clientInfo.sid;
-        var userName = sessionsList.getValue(clientSID);
-        
-        //send info from server
-        socket.emit('server:userName', userName);
+      var clientSID = clientInfo.sid;
+      var userName = sessionsList.getValue(clientSID);
+      clientInfo.userName = userName;
+
+      socket.set('clientInfo', clientInfo);
+      
+      //send info from server
+      socket.emit('server:userName', userName);
+      socket.broadcast.emit('clientConnected');
     });
 
-    socket.on('client:request:players', function (clientInfo) {
-        console.log('\n\nclient:request:players:', clientInfo,  '\n\n');
-        socket.emit('server:playersList', []);
+    var registerClient = function(socketID, clientInfo){
+      clientList.register(socketID, clientInfo);
+    };
+
+    /*
+      whoIsConnected
+    */
+    socket.on('whoIsConnected', function (clientInfo) {
+        //clear all players info list
+        clientList.unregisterAll();
+
+        console.log('\n\nwhoIsConnected:', socket.id, clientInfo,  '\n\n');
+        
+        var allClients = io.sockets.clients();
+        
+        for (var i = 0; i < allClients.length; i++) {
+          var client = allClients[i];
+          clientList.register(client.id, {});
+
+          /* jshint -W083 */
+          client.get('clientInfo', function(err, clientInfo) {
+            registerClient(client.id, clientInfo);
+          });
+
+          // if is the lastone
+          if(i === allClients.length-1){
+            // send all clients connected to user
+            socket.emit('server:clientList', clientList.getAllValues());
+          }
+        }
+        
     });
    
     // on disconnection
     socket.on('disconnect', function () {
-        socket.broadcast.emit('clientsChanged', 
-          {
-            clientData: {
-              usersCount: io.sockets.clients().length - 1
-            }
-          }
-        );
+      socket.broadcast.emit('clientDisconnected');
     });
    
     socket.on('toSocket:playlist:add', function (data) {

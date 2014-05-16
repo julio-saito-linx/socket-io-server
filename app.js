@@ -34,11 +34,6 @@ app.get('/logon', function(req, res){
   }
 });
 
-
-// Sessions list
-var Registry = require('./lib/registry').Registry;
-var sessionsList = new Registry();
-
 app.post('/logon', function(req, res){
   
   // set new session
@@ -46,14 +41,17 @@ app.post('/logon', function(req, res){
 
   sessionsList.register(req.session.id, req.session.userName);
 
-  // start socket
-  mainSocket.startSockets(io, req.session, sessionsList);
-
   // go to index
   res.redirect('/');
 });
 
+// Sessions list
+var Registry = require('./lib/registry').Registry;
+var sessionsList = new Registry();
+var playersList = new Registry();
 
+// start socket
+mainSocket.startSockets(io, sessionsList, playersList);
 
 
 server.listen(9003);
