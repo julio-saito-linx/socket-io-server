@@ -7,6 +7,9 @@
 'use strict';
 
 exports.startSockets = function(io, sessionsList, clientList){
+  var RSVP = require('rsvp');
+  var _ = require('underscore');
+
   io.sockets.on('connection', function (socket) {
     /*
       get clientInfo direct from the client
@@ -23,14 +26,8 @@ exports.startSockets = function(io, sessionsList, clientList){
       socket.broadcast.emit('clientConnected');
     });
 
-    var registerClient = function(socketID, clientInfo){
-      clientList.register(socketID, clientInfo);
-    };
-
-    /*
-      whoIsConnected
-    */
-    socket.on('whoIsConnected', function (clientInfo) {
+    var getAllClients = function(clientInfo) {
+      var promise = new RSVP.Promise(function(resolve, reject) {
         //clear all players info list
         clientList.unregisterAll();
 
@@ -44,16 +41,51 @@ exports.startSockets = function(io, sessionsList, clientList){
 
           /* jshint -W083 */
           client.get('clientInfo', function(err, clientInfo) {
+            if(err){
+              return reject(err);
+            }
             registerClient(client.id, clientInfo);
           });
 
           // if is the lastone
           if(i === allClients.length-1){
-            // send all clients connected to user
-            socket.emit('server:clientList', clientList.getAllValues());
+            resolve(clientList.getAllValues());
           }
         }
-        
+      });
+      return promise;
+    };
+
+    var registerClient = function(socketID, clientInfo){
+      clientList.register(socketID, clientInfo);
+    };
+
+    /*
+      whoIsConnected
+    */
+    socket.on('whoIsConnected', function (clientInfo) {
+        getAllClients(clientInfo).then(function(allClients) {
+          // send all clients connected to user
+          socket.emit('server:clientList', allClients);
+        });
+    });
+   
+    /*
+      client:request:playerName
+    */
+    socket.on('client:request:playerName', function (clientInfo) {
+        getAllClients(clientInfo).then(function(allClients) {
+          //filter only players of the user
+          
+          var filtered = _.filter(allClients, function(client){ 
+            return  client.appName === '1-player'
+                &&  client.userName === clientInfo.userName;
+          });
+
+          var playerName = clientInfo.userName + '\'s player ' + (filtered.length);
+
+          socket.emit('server:response:playerName', playerName);
+        });
     });
    
     // on disconnection
