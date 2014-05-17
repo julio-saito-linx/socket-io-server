@@ -46,13 +46,13 @@ $(function() {
         });
 
         socket.on('clientConnected', function (){
-            socket.emit('whoIsConnected', clientInfo);
+            socket.emit('client:request:clients:connected', clientInfo);
         });
         socket.on('clientDisconnected', function (){
-            socket.emit('whoIsConnected', clientInfo);
+            socket.emit('client:request:clients:connected', clientInfo);
         });
 
-        socket.on('server:clientList', renderClients);
+        socket.on('server:response:clients:connected', renderClients);
 
         socket.on('server:userName', function (userName){
             $('#socketInfo').html('connected as ' + userName);

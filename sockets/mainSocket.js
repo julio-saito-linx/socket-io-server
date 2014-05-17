@@ -31,7 +31,7 @@ exports.startSockets = function(io, sessionsList, clientList){
         //clear all players info list
         clientList.unregisterAll();
 
-        console.log('\n\nwhoIsConnected:', socket.id, clientInfo,  '\n\n');
+        console.log('\n\nclient:request:clients:connected:', socket.id, clientInfo,  '\n\n');
         
         var allClients = io.sockets.clients();
         
@@ -61,12 +61,23 @@ exports.startSockets = function(io, sessionsList, clientList){
     };
 
     /*
-      whoIsConnected
+      client:request:clients:connected
     */
-    socket.on('whoIsConnected', function (clientInfo) {
+    socket.on('client:request:clients:connected', function (clientInfo) {
         getAllClients(clientInfo).then(function(allClients) {
           // send all clients connected to user
-          socket.emit('server:clientList', allClients);
+          socket.emit('server:response:clients:connected', allClients);
+        });
+    });
+
+    socket.on('client:request:players:connected', function (clientInfo) {
+        getAllClients(clientInfo).then(function(allClients) {
+          
+          var onlyPlayers = _.filter(allClients, function(client){ 
+            return  client.appName === '1-player';
+          });
+
+          socket.emit('server:response:players:connected', onlyPlayers);
         });
     });
    
