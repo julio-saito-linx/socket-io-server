@@ -1,15 +1,20 @@
-var express = require('express')
-  , bodyParser = require('body-parser') // for reading POSTed form data into `req.body`
-  , expressSession = require('express-session')
-  , cookieParser = require('cookie-parser') // the session is stored in a cookie, so we use this to parse it
-  , app = express()
-  , server = require('http').createServer(app)
-  , io = require('socket.io').listen(server)
-  , path = require('path')
-  , routes = require('./routes')
-  , user = require('./routes/user')
-  , mainSocket = require('./sockets/mainSocket');
-;
+'use strict';
+var express = require('express'),
+    bodyParser = require('body-parser'),
+    expressSession = require('express-session'),
+    cookieParser = require('cookie-parser'),
+    app = express(),
+    server = require('http').createServer(app),
+    io = require('socket.io').listen(server),
+    path = require('path'),
+    routes = require('./routes'),
+    mainSocket = require('./sockets/mainSocket');
+
+
+var Registry = require('./lib/registry').Registry;
+var sessionsList = new Registry();
+var playersList = new Registry();
+
 
 // static
 app.use(express.static(path.join(__dirname, 'public')));
@@ -27,7 +32,7 @@ app.use(expressSession({secret:'some-secret_token=here'}));
 app.get('/', routes.index);
 
 app.get('/logon', function(req, res){
-  if (req.session.userName) {
+  if (req.session.roomName) {
     res.redirect('/');
   } else {
     res.render('logon');
@@ -37,18 +42,13 @@ app.get('/logon', function(req, res){
 app.post('/logon', function(req, res){
   
   // set new session
-  req.session.userName = req.body.userName;
+  req.session.roomName = req.body.roomName;
 
-  sessionsList.register(req.session.id, req.session.userName);
+  sessionsList.register(req.session.id, req.session.roomName);
 
   // go to index
   res.redirect('/');
 });
-
-// Sessions list
-var Registry = require('./lib/registry').Registry;
-var sessionsList = new Registry();
-var playersList = new Registry();
 
 // start socket
 mainSocket.startSockets(io, sessionsList, playersList);

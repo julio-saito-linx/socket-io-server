@@ -5,10 +5,10 @@
 
 exports.index = function(req, res){
 
-  if(req.session.userName){
+  if(req.session.roomName){
     res.render('index', { 
       title: 'Elastic Local Music - Socket.IO Server',
-      userName: req.session.userName,
+      roomName: req.session.roomName,
       sid: req.session.id
     });
   }else{

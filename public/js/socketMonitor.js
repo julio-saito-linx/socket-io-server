@@ -19,13 +19,12 @@ $(function() {
             if(client !== null){
                 var html = '<div class="btn btn-default navbar-btn">';
                 html += '<p>' + client.appName + '</p>';
-                html += '<p>' + client.userName + '</p>';
+                html += '<p>' + client.roomName + '</p>';
                 html += '<p>' + client.sid + '</p>';
                 html += '</div>';
                 jClients.append(html);
             }
-        };
-
+        }
     };
 
     var initializeSocketIO = function() {
@@ -55,13 +54,9 @@ $(function() {
 
         socket.on('server:response:clients:connected', renderClients);
 
-        socket.on('server:userName', function (userName){
-            $('#socketInfo').html('connected as ' + userName);
+        socket.on('server:roomName', function (roomName){
+            $('#socketInfo').html(roomName);
         });
-
-        // socket.on('toAll:playlist:add', function (songJson) {
-        //     log('toAll:playlist:add', '[' + songJson.id + '] ' + songJson.artist + ' - ' + songJson.title);
-        // });
 
     };
 

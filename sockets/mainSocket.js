@@ -16,13 +16,13 @@ exports.startSockets = function(io, sessionsList, clientList){
     */
     socket.on('client:connection', function (clientInfo) {
       var clientSID = clientInfo.sid;
-      var userName = sessionsList.getValue(clientSID);
-      clientInfo.userName = userName;
+      var roomName = sessionsList.getValue(clientSID);
+      clientInfo.roomName = roomName;
 
       socket.set('clientInfo', clientInfo);
       
       //send info from server
-      socket.emit('server:userName', userName);
+      socket.emit('server:roomName', roomName);
       socket.broadcast.emit('clientConnected');
     });
 
@@ -89,11 +89,11 @@ exports.startSockets = function(io, sessionsList, clientList){
           //filter only players of the user
           
           var filtered = _.filter(allClients, function(client){ 
-            return  client.appName === '1-player'
-                &&  client.userName === clientInfo.userName;
+            return  client.appName === '1-player' &&
+                    client.roomName === clientInfo.roomName;
           });
 
-          var playerName = clientInfo.userName + '\'s player ' + (filtered.length);
+          var playerName = clientInfo.roomName + '\'s player ' + (filtered.length);
 
           socket.emit('server:response:playerName', playerName);
         });
