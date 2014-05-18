@@ -43,6 +43,7 @@ $(function() {
         // server -> client
         socket.on('connect', function (){
             socket.emit('client:connection', clientInfo);
+            socket.emit('client:request:clients:connected', clientInfo);
         });
 
         socket.on('clientConnected', function (){

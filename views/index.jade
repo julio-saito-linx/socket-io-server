@@ -1,21 +1,16 @@
 extends layout
 
 block content
-	h1 Elastic Local Music
-	h4 Welcome <b>#{userName}</b> sid: 
+	h1 #{userName}
+	p sid: 
 		span#sidSpan #{sid}
 
-	h4 Players:
-	ul
-		li Sala de Estar - Julio - playing: Maria Rita - Num copo so´
-		li Quarto de Visitas - Mario - playing: John Scofield - A Go Go
-		li 
-			a(href="http://192.168.15.103:9001/?sid=#{sid}") Create a new player
-
-	a.btn.btn-default.buttonSpace(href="http://192.168.15.103:9002/?sid=#{sid}") Search music
+	a.btn.btn-default.buttonSpace(href="http://192.168.15.103:9001/?sid=#{sid}", target="player-window") Player
+	a.btn.btn-default.buttonSpace(href="http://192.168.15.103:9002/?sid=#{sid}", target="search-window") Search for music
 
 	br
 	br
+	h4 Who is connected
 	div.clients
 
 script(src='/socket.io/socket.io.js')
