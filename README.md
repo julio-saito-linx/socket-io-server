@@ -4,7 +4,7 @@
  - sets room name
  - provide links to [Player](https://github.com/saitodisse/elastic-player) and [Music Searcher](https://github.com/saitodisse/elastic-music-searcher)
 
-##### TODO
+###### TODO
  - facebook login
 
 
@@ -17,7 +17,7 @@
  - buttons previous and next
  - accepts his music
 
-##### TODO
+###### TODO
  - remote control of another player
 
 
@@ -30,5 +30,5 @@
  - dropdown to select a player
  - send a song to a player
 
-##### TODO
+###### TODO
  - send entire album
