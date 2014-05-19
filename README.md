@@ -1,33 +1,34 @@
-#socket-io-server
+
+#### [Socket.IO Server](https://github.com/saitodisse/socket-io-server)(9003)
+
+ - sets room name
+ - provide links to [Player](https://github.com/saitodisse/elastic-player) and [Music Searcher](https://github.com/saitodisse/elastic-music-searcher)
+
+##### TODO
+ - facebook login
 
 
-keep all other projects joined.
 
 
-## TODO
+#### [Player](https://github.com/saitodisse/elastic-player)(9001)
 
-#### (9003) [Socket.IO Server](http://localhost:9003)
-
-has the **user session**
-
- - has a user session
- - has a link to music search with the user session
- - has the logon page
- - can logon with facebook
- - can create a new player
- - can add music to this player
- - can add music to others players
-
-#### (9001) [Player](http://localhost:9001)
-
-can **play** and have a playlist
-
+ - basic HTML5 player with controls
  - has a playlist
- - only accepts his music
- - can be excluded
+ - buttons previous and next
+ - accepts his music
 
-#### (9002) [Music Searcher](http://localhost:9002)
+##### TODO
+ - remote control of another player
 
-**search**, preview and add to a __player__
 
-  - finds music on elastic search database
+
+
+#### [Music Searcher](https://github.com/saitodisse/elastic-music-searcher)(9002)
+
+ - finds music on elastic search database
+ - can preview songs (tiny play button)
+ - dropdown to select a player
+ - send a song to a player
+
+##### TODO
+ - send entire album
