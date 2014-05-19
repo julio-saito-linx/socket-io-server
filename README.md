@@ -1,5 +1,5 @@
 
-#### [Socket.IO Server](https://github.com/saitodisse/socket-io-server)(9003)
+#### [Login and Socket.IO Server](https://github.com/saitodisse/socket-io-server)(9003)
 
  - sets room name
  - provide links to [Player](https://github.com/saitodisse/elastic-player) and [Music Searcher](https://github.com/saitodisse/elastic-music-searcher)
@@ -23,7 +23,7 @@
 
 
 
-#### [Music Searcher](https://github.com/saitodisse/elastic-music-searcher)(9002)
+#### [Searcher](https://github.com/saitodisse/elastic-music-searcher)(9002)
 
  - finds music on elastic search database
  - can preview songs (tiny play button)
@@ -32,3 +32,13 @@
 
 ###### TODO
  - send entire album
+
+
+
+
+
+#### [Music Server](https://github.com/saitodisse/elastic-music-server)(9004)
+
+ - serves music files with CORS enabled
+
+###### TODO
