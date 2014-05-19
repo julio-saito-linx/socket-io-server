@@ -1,3 +1,15 @@
+#Local Music Party
+
+####Installation
+
+###### Clone all
+```
+git clone git@github.com:saitodisse/elastic-root.git
+cd elastic-root
+./cloneAll.sh
+```
+
+
 ![music party diagram](https://docs.google.com/drawings/d/1s1pn9j1HyYyN4xdEJo8707BzDixOZsyC4k3o6BRixFg/pub?w=720&amp;h=540 "music party diagram")
 
 
