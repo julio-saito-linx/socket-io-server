@@ -1,3 +1,5 @@
+![music party diagram](https://docs.google.com/drawings/d/1s1pn9j1HyYyN4xdEJo8707BzDixOZsyC4k3o6BRixFg/pub?w=720&amp;h=540 "music party diagram")
+
 
 #### [Login and Socket.IO Server](https://github.com/saitodisse/socket-io-server)(9003)
 
