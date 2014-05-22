@@ -53,6 +53,21 @@ cd elastic-root
 
 #### [Music Server](https://github.com/saitodisse/elastic-music-server)(9004)
 
- - serves music files with CORS enabled
+![music server diagram](https://docs.google.com/drawings/d/1HnM9_fhsr1D2oaUNB0ZZvwAL1b-kmwCpQYscUp63L1Y/pub?w=480&amp;h=360 "Music Server Diagram")
+
+ - Serves music files with CORS enabled
+
+###### TODO
+ - Search for local folders
+ - Select a local folder
+ - Start discovery for new files
+ - List monitored folder
+ - Save monitored folder
+ - Delete monitored folder
+ - Clean all database of musics
+ - Will check what folder still exists and remove files that does not exist any more
+ - Include new files only if it was not included before
+ - Get mp3/flac info from the files to save on elastic search database
+ - linux: mount drive if is not mounted
 
 ###### TODO
