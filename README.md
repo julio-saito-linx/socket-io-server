@@ -69,5 +69,3 @@ cd elastic-root
  - Include new files only if it was not included before
  - Get mp3/flac info from the files to save on elastic search database
  - linux: mount drive if is not mounted
-
-###### TODO
