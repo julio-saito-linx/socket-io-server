@@ -1,12 +1,25 @@
 #Local Music Party
 
-####Installation
+####Installation instructions
+ - Install node.js
+ - Install java
+ - Install elastic search
+
+Install this package:
+```
+sudo npm i grunt-cli -g
+```
 
 ###### Clone all
 ```
 git clone git@github.com:saitodisse/elastic-root.git
 cd elastic-root
-./cloneAll.sh
+bash cloneAll.sh
+```
+
+###### npm install
+```
+bash npmInstallAll.sh
 ```
 
 
