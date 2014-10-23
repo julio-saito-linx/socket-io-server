@@ -2,11 +2,11 @@ extends layout
 
 block content
 	h1 #{roomName}
-	p sid: 
+	p sid:
 		span#sidSpan #{sid}
 
-	a.btn.btn-default.buttonSpace(href="http://192.168.15.103:9001/?sid=#{sid}", target="player-window") Player
-	a.btn.btn-default.buttonSpace(href="http://192.168.15.103:9002/?sid=#{sid}", target="search-window") Search for music
+	a.btn.btn-default.buttonSpace(href="http://player.azk.dev/?sid=#{sid}", target="player-window") Player
+	a.btn.btn-default.buttonSpace(href="http://searcher.azk.dev/?sid=#{sid}", target="search-window") Search for music
 
 	br
 	br

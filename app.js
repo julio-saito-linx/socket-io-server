@@ -21,7 +21,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'bower_components')));
 
 // all environments
-app.set('port', process.env.PORT || 9004);
+app.set('port', process.env.HTTP_PORT || 9003);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(bodyParser());
@@ -40,7 +40,7 @@ app.get('/logon', function(req, res){
 });
 
 app.post('/logon', function(req, res){
-  
+
   // set new session
   req.session.roomName = req.body.roomName;
 
@@ -54,4 +54,4 @@ app.post('/logon', function(req, res){
 mainSocket.startSockets(io, sessionsList, playersList);
 
 
-server.listen(9003);
+server.listen(process.env.HTTP_PORT);

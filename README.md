@@ -1,6 +1,8 @@
 by: [saitodisse](http://saitodisse.github.io/)
 
-#Local Music Party
+# Local Music Party
+- Provide all your songs on local LAN.
+- Search your mp3 with an elastic-search database
 
 ####Installation instructions
  - Install node.js

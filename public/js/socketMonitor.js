@@ -28,9 +28,9 @@ $(function() {
     };
 
     var initializeSocketIO = function() {
-    
+
         // TODO: 192.168... must be dynamic
-        var socket = io.connect('http://192.168.15.103');
+        var socket = io.connect('http://socketserver.azk.dev');
 
         var clientInfo = {
             appName: '3-socketServer',
